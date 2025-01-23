@@ -23,11 +23,18 @@ function App() {
   },[count]);
 
   const fetchdata = async() => {
-    const response = await fetch('https://thequoteshub.com/api/');
+    try{
+      
+      const response = await fetch('https://thequoteshub.com/api/');
 
-    const result = await response.json();
+      const result = await response.json();
 
-    setData(result.text);
+      setData(result.text);
+    }catch{
+      throw new Error("Cant fetch API");
+    }finally{
+      console.log("FetchApi called");
+    }
   }
 
   return (
